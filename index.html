@@ -1,0 +1,96 @@
+<html>
+
+
+<!-- Mirrored from crush-the-car.apps.minigame.vip/minigame-index.html?mn_config=https://indigo.minigame.vip/v1/api/channel/indigo/main/game/crush-the-car/config&ts=1690533414785 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Jul 2023 08:50:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>Crush The Car</title>
+    <meta id="viewport" name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="color-scheme" content="only">
+    <meta name="supported-color-schemes" content="only">
+    <script src="sdk.minigame.vip/js/1.5/minigamee33b.js?t=1688549263"></script>
+    <script>
+        var SDK_ON_READY = false;
+        minigame.initializeAsync().then(function () {
+            SDK_ON_READY = true
+            minigame.getEntryPointAsync().then(function (entry) {
+                console.info("Entry Point: ", entry);
+            });
+            console.info("Context Type: ", minigame.context.getType());
+        })
+        function on_sdk_init () {
+            if (SDK_ON_READY) {
+                minigame.startGameAsync()
+            } else {
+                setTimeout(on_sdk_init, 10)
+            }
+        }
+        function on_sdk_process (v) {
+            if (v == 100) {
+                on_sdk_init();
+            } else if (SDK_ON_READY) {
+                minigame.setLoadingProgress(v);
+            }
+        }
+        var LocalizationLanguage = "com";
+        function yadv_showReward (cbks) {
+            console.warn("ad_show_reward");
+            if (window.MiniGameAds && MiniGameAds.isRewardvideoReady()) {
+                plingaRpc_pauseGame();
+                cbks.onOpen();
+                MiniGameAds.showRewardedVideo().then(() => {
+                    plingaRpc_resumeGame();
+                    cbks.onRewarded(); cbks.onClose();
+                }).catch(e => {
+                    cbks.onClose();
+                });
+            } else {
+                setTimeout(function () {
+                    cbks.onError();
+                })
+            }
+        }
+        function yadv_showInsert (cbks) {
+            console.warn("ad_show_insert");
+            if (window.SDK_ON_READY && window.MiniGameAds && MiniGameAds.isInterstitialReady()) {
+                cbks.onOpen && cbks.onOpen();
+                plingaRpc_pauseGame();
+                MiniGameAds.showInterstitial().then(() => {
+                    plingaRpc_resumeGame();
+                    cbks.onClose && cbks.onClose()
+                }).catch(() => {
+                    plingaRpc_resumeGame();
+                    cbks.onClose && cbks.onClose()
+                })
+            } else {
+                setTimeout(function () {
+                    cbks.onError && cbks.onError();
+                }, 1)
+            }
+        }
+        function SetLdBoard (rankVal) { }
+        var plingaRpc_pauseGame = function () {
+            console.log('debug log: plinga pause game');
+        };
+        var plingaRpc_resumeGame = function () { };
+        console.log = function () { };
+    </script>
+    <script src="game.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+
+    <canvas id="canvas" screencanvas="true"></canvas>
+
+
+</body>
+
+
+<!-- Mirrored from crush-the-car.apps.minigame.vip/minigame-index.html?mn_config=https://indigo.minigame.vip/v1/api/channel/indigo/main/game/crush-the-car/config&ts=1690533414785 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Jul 2023 08:50:47 GMT -->
+</html>

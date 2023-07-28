@@ -1,0 +1,90 @@
+
+<!-- saved from url=(0167)https://crush-the-car.apps.minigame.vip/minigame-index.html?mn_config=https://indigo.minigame.vip/v1/api/channel/indigo/main/game/crush-the-car/config&ts=1690532701341 -->
+<html style="--sat: env(safe-area-inset-top); --sar: env(safe-area-inset-right); --sab: env(safe-area-inset-bottom); --sal: env(safe-area-inset-left);"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Crush The Car</title>
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="color-scheme" content="only">
+    <meta name="supported-color-schemes" content="only">
+    <script type="text/javascript" async="" src="./analytics.js.tải xuống"></script><script type="text/javascript" async="" src="./js(1)"></script><script src="./minigame.js.tải xuống"></script>
+    <script>
+        var SDK_ON_READY = false;
+        minigame.initializeAsync().then(function () {
+            SDK_ON_READY = true
+            minigame.getEntryPointAsync().then(function (entry) {
+                console.info("Entry Point: ", entry);
+            });
+            console.info("Context Type: ", minigame.context.getType());
+        })
+        function on_sdk_init () {
+            if (SDK_ON_READY) {
+                minigame.startGameAsync()
+            } else {
+                setTimeout(on_sdk_init, 10)
+            }
+        }
+        function on_sdk_process (v) {
+            if (v == 100) {
+                on_sdk_init();
+            } else if (SDK_ON_READY) {
+                minigame.setLoadingProgress(v);
+            }
+        }
+        var LocalizationLanguage = "com";
+        function yadv_showReward (cbks) {
+            console.warn("ad_show_reward");
+            if (window.MiniGameAds && MiniGameAds.isRewardvideoReady()) {
+                plingaRpc_pauseGame();
+                cbks.onOpen();
+                MiniGameAds.showRewardedVideo().then(() => {
+                    plingaRpc_resumeGame();
+                    cbks.onRewarded(); cbks.onClose();
+                }).catch(e => {
+                    cbks.onClose();
+                });
+            } else {
+                setTimeout(function () {
+                    cbks.onError();
+                })
+            }
+        }
+        function yadv_showInsert (cbks) {
+            console.warn("ad_show_insert");
+            if (window.SDK_ON_READY && window.MiniGameAds && MiniGameAds.isInterstitialReady()) {
+                cbks.onOpen && cbks.onOpen();
+                plingaRpc_pauseGame();
+                MiniGameAds.showInterstitial().then(() => {
+                    plingaRpc_resumeGame();
+                    cbks.onClose && cbks.onClose()
+                }).catch(() => {
+                    plingaRpc_resumeGame();
+                    cbks.onClose && cbks.onClose()
+                })
+            } else {
+                setTimeout(function () {
+                    cbks.onError && cbks.onError();
+                }, 1)
+            }
+        }
+        function SetLdBoard (rankVal) { }
+        var plingaRpc_pauseGame = function () {
+            console.log('debug log: plinga pause game');
+        };
+        var plingaRpc_resumeGame = function () { };
+        console.log = function () { };
+    </script>
+    <script src="./game.min.js.tải xuống"></script><script src="./minigame-sdk.js.tải xuống"></script>
+
+    <link rel="stylesheet" type="text/css" href="./style.css">
+<script src="./js(2)" async=""></script></head>
+
+<body>
+
+
+    <canvas id="canvas" screencanvas="true" width="900" height="1725" tabindex="0" style="height: 899px; width: 469.043px; cursor: inherit;"></canvas>
+
+
+
+
+<style type="text/css">@font-face { font-family: 'font'; src: url('assets/preloader/fonts/font.ttf');}</style><style type="text/css">@font-face { font-family: 'montserrat-alt-black'; src: url('assets/preloader/fonts/montserrat-alt-black.ttf');}</style><style type="text/css">@font-face { font-family: 'montserrat-black-italic'; src: url('assets/preloader/fonts/montserrat-black-italic.ttf');}</style><style type="text/css">@font-face { font-family: 'montserrat-medium-italic'; src: url('assets/preloader/fonts/montserrat-medium-italic.ttf');}</style><style type="text/css">@font-face { font-family: 'crosspromo'; src: url('assets/crosspromo/fonts/crosspromo.ttf');}</style></body></html>
